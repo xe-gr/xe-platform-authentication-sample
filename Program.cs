@@ -46,7 +46,12 @@ namespace XePlatformAuthentication
 
         private static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
-            Console.WriteLine($"Global exception handler caught unexpected error: {e.ExceptionObject}");
+            var exception = e.ExceptionObject as Exception;
+            
+            if (exception is AggregateException aggregateException)
+                exception = aggregateException.Flatten();
+            
+            Console.WriteLine($"Global exception handler caught unexpected error: {exception}");
             Environment.Exit(1);
         }
     }

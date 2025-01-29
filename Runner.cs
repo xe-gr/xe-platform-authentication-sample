@@ -136,7 +136,7 @@ namespace XePlatformAuthentication
             Console.WriteLine(formattedJson);
         }
 
-        internal enum Choice
+        private enum Choice
         {
             GetEntry,
             Exit,
