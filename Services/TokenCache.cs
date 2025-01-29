@@ -5,7 +5,7 @@ using XePlatformAuthentication.Services.Implementation;
 
 namespace XePlatformAuthentication.Services
 {
-    public class TokenCache : ITokenCache
+    public sealed class TokenCache : ITokenCache
     {
         private static readonly ConcurrentDictionary<string, Token> Tokens = new();
 

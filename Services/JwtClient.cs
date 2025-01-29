@@ -8,7 +8,8 @@ namespace XePlatformAuthentication.Services
 {
     public class JwtClient(AppSettings settings) : IJwtClient
     {
-        public async Task<(HttpStatusCode statusCode, Token token, string body)> GetTokenAsync(string clientId, string clientSecret, string userName, string password)
+        public async Task<(HttpStatusCode statusCode, Token token, string body)> GetTokenAsync(
+            string clientId, string clientSecret, string userName, string password)
         {
             using (var client = new RestClient(settings.XeAuthUrl))
             {
@@ -25,12 +26,9 @@ namespace XePlatformAuthentication.Services
 
                 var response = await client.ExecuteAsync<Token>(request);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return (HttpStatusCode.OK, response.Data, string.Empty);
-                }
-
-                return (response.StatusCode, null, response.Content);
+                return response.IsSuccessStatusCode
+                    ? (HttpStatusCode.OK, response.Data, string.Empty)
+                    : (response.StatusCode, null, response.Content);
             }
         }
     }

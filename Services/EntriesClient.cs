@@ -13,11 +13,8 @@ namespace XePlatformAuthentication.Services
             using (var client = new RestClient(settings.XeApiUrl))
             {
                 var request = new RestRequest($"/entries/v12/{accountId}/{entryId}");
-
                 request.AddHeader("Authorization", $"Bearer {token.AccessToken}");
-
                 var response = await client.ExecuteAsync(request);
-
                 return (response.StatusCode, response.Content);
             }
         }
