@@ -1,6 +1,6 @@
 ﻿using XePlatformAuthentication.Models;
 
-namespace XePlatformAuthentication.Services.Implementation
+namespace XePlatformAuthentication.Services.Interfaces
 {
     public interface ITokenCache
     {

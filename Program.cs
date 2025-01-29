@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using XePlatformAuthentication.Helpers;
 using XePlatformAuthentication.Models;
 using XePlatformAuthentication.Services;
-using XePlatformAuthentication.Services.Implementation;
+using XePlatformAuthentication.Services.Interfaces;
 
 namespace XePlatformAuthentication
 {

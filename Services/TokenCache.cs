@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using XePlatformAuthentication.Models;
-using XePlatformAuthentication.Services.Implementation;
+using XePlatformAuthentication.Services.Interfaces;
 
 namespace XePlatformAuthentication.Services
 {
