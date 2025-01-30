@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using XePlatformAuthentication.Models;
 
-namespace XePlatformAuthentication.Services.Implementation
+namespace XePlatformAuthentication.Services.Interfaces
 {
     public interface IEntriesClient
     {

@@ -2,7 +2,8 @@
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using XePlatformAuthentication.Services.Implementation;
+using XePlatformAuthentication.Globals;
+using XePlatformAuthentication.Services.Interfaces;
 
 namespace XePlatformAuthentication
 {
@@ -69,11 +70,12 @@ namespace XePlatformAuthentication
 
         private async Task<bool> GetToken()
         {
-            var response = await jwtClient.GetTokenAsync(_clientId, _clientSecret, _userName, _password);
+            var response = await 
+                jwtClient.GetTokenAsync(_clientId, _clientSecret, _userName, _password);
 
             if (response.statusCode == HttpStatusCode.OK)
             {
-                tokenCache.Save(response.token, Globals.Constants.TokenCacheKey);
+                tokenCache.Save(response.token, Constants.TokenCacheKey);
 
                 return true;
             }
@@ -87,7 +89,7 @@ namespace XePlatformAuthentication
 
         private async Task GetEntryAsync()
         {
-            if (tokenCache.Get(Globals.Constants.TokenCacheKey) is null)
+            if (tokenCache.Get(Constants.TokenCacheKey) is null)
             {
                 Console.WriteLine("Retrieving token");
 
@@ -106,11 +108,12 @@ namespace XePlatformAuthentication
 
             var accountId = Console.ReadLine();
 
-            var response = await entriesClient.GetEntryAsync(tokenCache.Get(Globals.Constants.TokenCacheKey), accountId, entryId);
+            var response = await entriesClient
+                .GetEntryAsync(tokenCache.Get(Constants.TokenCacheKey), accountId, entryId);
 
             if (response.statusCode == HttpStatusCode.Unauthorized)
             {
-                tokenCache.Remove(Globals.Constants.TokenCacheKey);
+                tokenCache.Remove(Constants.TokenCacheKey);
             }
 
             string formattedJson;
